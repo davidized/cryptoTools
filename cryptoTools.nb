@@ -1,0 +1,191 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      5797,        182]
+NotebookOptionsPosition[      5036,        152]
+NotebookOutlinePosition[      5456,        168]
+CellTagsIndexPosition[      5413,        165]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["cryptoTools", "Title",
+ CellChangeTimes->{{3.572403323718165*^9, 3.572403325387368*^9}}],
+
+Cell["\<\
+by David Williamson <david@davidized.com>\
+\>", "Author",
+ CellChangeTimes->{{3.5724035148341007`*^9, 3.5724035253641195`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Frequency Analysis", "Section",
+ CellChangeTimes->{{3.57240333222018*^9, 3.5724033438578005`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["freqAnalysis[cryptoText]", "Subsection",
+ CellChangeTimes->{{3.57240334908381*^9, 3.5724033548558197`*^9}}],
+
+Cell[TextData[{
+ "Used to generate a grid containing counts and percents for characters in \
+the given text. The function does not perform any transform on the string so \
+it may be wise to convert it to upper or lowercase first using a function \
+like ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{"ToUpperCase", "[", "]"}], "Code"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " or ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{"ToLowerCase", "[", "]"}], "Code"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ". This function only works on the letters in strings."
+}], "Text",
+ CellChangeTimes->{{3.572403364637037*^9, 3.5724034926508617`*^9}, {
+  3.572404916704363*^9, 3.572404944238412*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"freqAnalysis", "[", "cryptoText_", "]"}], " ", ":=", " ", 
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"chars", ",", " ", "counts"}], "}"}], ",", 
+    RowBox[{
+     RowBox[{"chars", "=", 
+      RowBox[{"Sort", "[", 
+       RowBox[{"DeleteDuplicates", "[", 
+        RowBox[{"StringCases", "[", 
+         RowBox[{"cryptoText", ",", 
+          RowBox[{"_", "?", "LetterQ"}]}], "]"}], "]"}], "]"}]}], ";", 
+     RowBox[{"Grid", "[", 
+      RowBox[{"{", 
+       RowBox[{"chars", ",", " ", 
+        RowBox[{"counts", "=", 
+         RowBox[{"ParallelTable", "[", 
+          RowBox[{
+           RowBox[{"StringCount", "[", 
+            RowBox[{"cryptoText", ",", "l"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"l", ",", "chars"}], "}"}]}], "]"}]}], ",", " ", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"N", "[", 
+           RowBox[{
+            RowBox[{"i", "/", 
+             RowBox[{"Total", "[", "counts", "]"}]}], ",", "2"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "counts"}], "}"}]}], "]"}]}], "}"}], "]"}]}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.5724036262036963`*^9, 3.5724036981198225`*^9}, {
+  3.572403728555476*^9, 3.572403826196048*^9}, {3.572403873604531*^9, 
+  3.5724039409966493`*^9}, {3.5724039860963287`*^9, 3.5724039865019293`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["freqAnalysisNum[cryptoText]", "Subsection",
+ CellChangeTimes->{{3.5724049070479465`*^9, 3.5724049134751577`*^9}}],
+
+Cell[TextData[{
+ "Similar to ",
+ StyleBox["freqAnalysis[]", "Code"],
+ " except only operates on a string consisting of numbers."
+}], "Text",
+ CellChangeTimes->{{3.572404955316431*^9, 3.5724049726480618`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"freqAnalysisNum", "[", "cryptoText_", "]"}], ":=", 
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"nums", ",", "counts"}], "}"}], ",", " ", 
+    RowBox[{
+     RowBox[{"nums", "=", 
+      RowBox[{"Sort", "[", 
+       RowBox[{"DeleteDuplicates", "[", 
+        RowBox[{"StringCases", "[", 
+         RowBox[{"cryptoText", ",", " ", 
+          RowBox[{"_", "?", "DigitQ"}]}], "]"}], "]"}], "]"}]}], ";", " ", 
+     RowBox[{"Grid", "[", 
+      RowBox[{"{", 
+       RowBox[{"nums", ",", " ", 
+        RowBox[{"counts", "=", " ", 
+         RowBox[{"ParallelTable", "[", 
+          RowBox[{
+           RowBox[{"StringCount", "[", 
+            RowBox[{"cryptoText", ",", "n"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"n", ",", "nums"}], "}"}]}], "]"}]}], ",", " ", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"N", "[", 
+           RowBox[{
+            RowBox[{"i", "/", 
+             RowBox[{"Total", "[", "counts", "]"}]}], ",", "2"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "counts"}], "}"}]}], "]"}]}], "}"}], "]"}]}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.572404327814929*^9, 3.572404377376216*^9}, {
+  3.572404519632866*^9, 3.5724045250928755`*^9}, {3.572404610989626*^9, 
+  3.5724047432788587`*^9}, {3.572404789985341*^9, 3.572404808908174*^9}, {
+  3.5724048398742285`*^9, 3.5724048415434313`*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{707, 505},
+WindowMargins->{{46, Automatic}, {Automatic, 31}},
+FrontEndVersion->"8.0 for Microsoft Windows (32-bit) (October 6, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Report"}, "StandardReport.nb", 
+  CharacterEncoding -> "WindowsANSI"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 94, 1, 81, "Title"],
+Cell[676, 25, 137, 3, 41, "Author"],
+Cell[CellGroupData[{
+Cell[838, 32, 104, 1, 73, "Section"],
+Cell[CellGroupData[{
+Cell[967, 37, 113, 1, 24, "Subsection"],
+Cell[1083, 40, 730, 19, 65, "Text"],
+Cell[1816, 61, 1380, 35, 121, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3233, 101, 119, 1, 24, "Subsection"],
+Cell[3355, 104, 208, 5, 29, "Text"],
+Cell[3566, 111, 1430, 36, 121, "Input"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
