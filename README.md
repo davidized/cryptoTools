@@ -8,7 +8,7 @@ Tools I sometimes use while solving cons from _The Cryptogram_ (and other source
 ## Roadmap
 I pretty much am winging this, I'll add tools as I see uses for them in the future but for now here's a couple things I have in mind:
 
-- [ ] Index of Conicidence
+- [x] Index of Conicidence
 - [ ] Vigenere Cipher
 -  Write some (or all) of the functions in Python
 - Implementation of Encryption/Decryption functions for various ACA Cipher Types.
@@ -16,6 +16,7 @@ I pretty much am winging this, I'll add tools as I see uses for them in the futu
 ## Coding Standards
 - Functions should be named using the Mathematica standard where the first letter is lowercase so as not to conflict with existing functions.
 - Functions and variables should be named descriptivly to make code easier to read in the future.
+- If functions utilize other custom functions then the ability to specify all the arguments for functions being used should be available in the parent function as well.
 - Encryption/Decryption functions will end with E and D respectively (for example ```caesarShiftE```, and ```caesarShiftD```) and should take (essentially) the same arguments in the same order.
 - Coding should follow the DRY principle as much as possible.
 
@@ -23,7 +24,7 @@ I pretty much am winging this, I'll add tools as I see uses for them in the futu
 - [American Cryptogram Association](http://www.cryptogram.org/)
 
 ## Copyright & License
- The MIT License (MIT)
+ The MIT License (MIT)  
 Copyright (c) 2013 David Williamson <http://davidized.com/>
  
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
