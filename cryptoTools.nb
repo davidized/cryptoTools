@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[      5797,        182]
-NotebookOptionsPosition[      5036,        152]
-NotebookOutlinePosition[      5456,        168]
-CellTagsIndexPosition[      5413,        165]
+NotebookDataLength[      5838,        182]
+NotebookOptionsPosition[      5077,        152]
+NotebookOutlinePosition[      5497,        168]
+CellTagsIndexPosition[      5454,        165]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -46,14 +46,12 @@ like ",
  Cell[BoxData[
   FormBox[
    StyleBox[
-    RowBox[{"ToUpperCase", "[", "]"}], "Code"], TraditionalForm]],
-  FormatType->"TraditionalForm"],
+    RowBox[{"ToUpperCase", "[", "]"}], "Code"], TraditionalForm]]],
  " or ",
  Cell[BoxData[
   FormBox[
    StyleBox[
-    RowBox[{"ToLowerCase", "[", "]"}], "Code"], TraditionalForm]],
-  FormatType->"TraditionalForm"],
+    RowBox[{"ToLowerCase", "[", "]"}], "Code"], TraditionalForm]]],
  ". This function only works on the letters in strings."
 }], "Text",
  CellChangeTimes->{{3.572403364637037*^9, 3.5724034926508617`*^9}, {
@@ -62,18 +60,18 @@ like ",
 Cell[BoxData[
  RowBox[{
   RowBox[{"freqAnalysis", "[", "cryptoText_", "]"}], " ", ":=", " ", 
-  RowBox[{"Block", "[", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"chars", ",", " ", "counts"}], "}"}], ",", 
+  RowBox[{
+   RowBox[{"Block", "[", 
     RowBox[{
-     RowBox[{"chars", "=", 
-      RowBox[{"Sort", "[", 
-       RowBox[{"DeleteDuplicates", "[", 
-        RowBox[{"StringCases", "[", 
-         RowBox[{"cryptoText", ",", 
-          RowBox[{"_", "?", "LetterQ"}]}], "]"}], "]"}], "]"}]}], ";", 
-     RowBox[{"Grid", "[", 
+     RowBox[{"{", 
+      RowBox[{"chars", ",", " ", "counts"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"chars", "=", 
+       RowBox[{"Sort", "[", 
+        RowBox[{"DeleteDuplicates", "[", 
+         RowBox[{"StringCases", "[", 
+          RowBox[{"cryptoText", ",", 
+           RowBox[{"_", "?", "LetterQ"}]}], "]"}], "]"}], "]"}]}], ";", 
       RowBox[{"{", 
        RowBox[{"chars", ",", " ", 
         RowBox[{"counts", "=", 
@@ -90,11 +88,12 @@ Cell[BoxData[
             RowBox[{"i", "/", 
              RowBox[{"Total", "[", "counts", "]"}]}], ",", "2"}], "]"}], ",", 
           RowBox[{"{", 
-           RowBox[{"i", ",", "counts"}], "}"}]}], "]"}]}], "}"}], "]"}]}]}], 
-   "]"}]}]], "Input",
+           RowBox[{"i", ",", "counts"}], "}"}]}], "]"}]}], "}"}]}]}], "]"}], 
+   " ", "//", "TableForm"}]}]], "Input",
  CellChangeTimes->{{3.5724036262036963`*^9, 3.5724036981198225`*^9}, {
-  3.572403728555476*^9, 3.572403826196048*^9}, {3.572403873604531*^9, 
-  3.5724039409966493`*^9}, {3.5724039860963287`*^9, 3.5724039865019293`*^9}}]
+   3.572403728555476*^9, 3.572403826196048*^9}, {3.572403873604531*^9, 
+   3.5724039409966493`*^9}, {3.5724039860963287`*^9, 3.5724039865019293`*^9}, 
+   3.572818015705804*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -112,18 +111,18 @@ Cell[TextData[{
 Cell[BoxData[
  RowBox[{
   RowBox[{"freqAnalysisNum", "[", "cryptoText_", "]"}], ":=", 
-  RowBox[{"Block", "[", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"nums", ",", "counts"}], "}"}], ",", " ", 
+  RowBox[{
+   RowBox[{"Block", "[", 
     RowBox[{
-     RowBox[{"nums", "=", 
-      RowBox[{"Sort", "[", 
-       RowBox[{"DeleteDuplicates", "[", 
-        RowBox[{"StringCases", "[", 
-         RowBox[{"cryptoText", ",", " ", 
-          RowBox[{"_", "?", "DigitQ"}]}], "]"}], "]"}], "]"}]}], ";", " ", 
-     RowBox[{"Grid", "[", 
+     RowBox[{"{", 
+      RowBox[{"nums", ",", "counts"}], "}"}], ",", " ", 
+     RowBox[{
+      RowBox[{"nums", "=", 
+       RowBox[{"Sort", "[", 
+        RowBox[{"DeleteDuplicates", "[", 
+         RowBox[{"StringCases", "[", 
+          RowBox[{"cryptoText", ",", " ", 
+           RowBox[{"_", "?", "DigitQ"}]}], "]"}], "]"}], "]"}]}], ";", " ", 
       RowBox[{"{", 
        RowBox[{"nums", ",", " ", 
         RowBox[{"counts", "=", " ", 
@@ -140,12 +139,13 @@ Cell[BoxData[
             RowBox[{"i", "/", 
              RowBox[{"Total", "[", "counts", "]"}]}], ",", "2"}], "]"}], ",", 
           RowBox[{"{", 
-           RowBox[{"i", ",", "counts"}], "}"}]}], "]"}]}], "}"}], "]"}]}]}], 
-   "]"}]}]], "Input",
+           RowBox[{"i", ",", "counts"}], "}"}]}], "]"}]}], "}"}]}]}], "]"}], 
+   " ", "//", "TableForm"}]}]], "Input",
  CellChangeTimes->{{3.572404327814929*^9, 3.572404377376216*^9}, {
   3.572404519632866*^9, 3.5724045250928755`*^9}, {3.572404610989626*^9, 
   3.5724047432788587`*^9}, {3.572404789985341*^9, 3.572404808908174*^9}, {
-  3.5724048398742285`*^9, 3.5724048415434313`*^9}}]
+  3.5724048398742285`*^9, 3.5724048415434313`*^9}, {3.572818005674986*^9, 
+  3.5728180212438135`*^9}}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -174,13 +174,13 @@ Cell[CellGroupData[{
 Cell[838, 32, 104, 1, 73, "Section"],
 Cell[CellGroupData[{
 Cell[967, 37, 113, 1, 24, "Subsection"],
-Cell[1083, 40, 730, 19, 65, "Text"],
-Cell[1816, 61, 1380, 35, 121, "Input"]
+Cell[1083, 40, 664, 17, 65, "Text"],
+Cell[1750, 59, 1422, 36, 121, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3233, 101, 119, 1, 24, "Subsection"],
-Cell[3355, 104, 208, 5, 29, "Text"],
-Cell[3566, 111, 1430, 36, 121, "Input"]
+Cell[3209, 100, 119, 1, 24, "Subsection"],
+Cell[3331, 103, 208, 5, 29, "Text"],
+Cell[3542, 110, 1495, 37, 121, "Input"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
