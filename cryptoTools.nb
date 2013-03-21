@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[      5838,        182]
-NotebookOptionsPosition[      5077,        152]
-NotebookOutlinePosition[      5497,        168]
-CellTagsIndexPosition[      5454,        165]
+NotebookDataLength[     14915,        469]
+NotebookOptionsPosition[     12914,        397]
+NotebookOutlinePosition[     13334,        413]
+CellTagsIndexPosition[     13291,        410]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -147,11 +147,256 @@ Cell[BoxData[
   3.5724048398742285`*^9, 3.5724048415434313`*^9}, {3.572818005674986*^9, 
   3.5728180212438135`*^9}}]
 }, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Substition Ciphers", "Section",
+ CellChangeTimes->{{3.5728242269371176`*^9, 3.572824235017932*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Utility Functions", "Subsection",
+ CellChangeTimes->{{3.5728242447211485`*^9, 3.5728242467647524`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["shiftChar[c, shift]", "Subsubsection",
+ CellChangeTimes->{{3.5728243356235085`*^9, 3.572824364389959*^9}}],
+
+Cell[TextData[{
+ "Shifts given character ",
+ StyleBox["c", "Input"],
+ " according to ",
+ StyleBox["shift", "Input"],
+ " (may be positive or negative). "
+}], "Text",
+ CellChangeTimes->{{3.5728243722367725`*^9, 3.5728243944044113`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"shiftChar", "[", 
+   RowBox[{"c_", ",", " ", "shift_"}], "]"}], " ", ":=", 
+  RowBox[{"FromCharacterCode", "[", 
+   RowBox[{
+    RowBox[{"Mod", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ToCharacterCode", "[", "c", "]"}], "-", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"UpperCaseQ", "[", "c", "]"}], ",", "65", ",", "97"}], "]"}],
+        "+", "shift"}], ",", "26"}], "]"}], "+", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"UpperCaseQ", "[", "c", "]"}], ",", "65", ",", "97"}], "]"}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.572818263489239*^9, 3.5728183186695366`*^9}, {
+  3.572818390649063*^9, 3.5728183993850784`*^9}, {3.5728185508321447`*^9, 
+  3.5728186544787264`*^9}, {3.572819029959786*^9, 3.572819080441475*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["shiftString[text, shift]", "Subsubsection",
+ CellChangeTimes->{{3.572824489066978*^9, 3.572824494152587*^9}}],
+
+Cell[TextData[{
+ "Shifts a string (",
+ StyleBox["text", "Input"],
+ ") according to ",
+ StyleBox["shift", "Input"],
+ " (postitive or negative) using ",
+ StyleBox["shiftChar", "Code"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.5728245018434005`*^9, 3.5728245222170362`*^9}, {
+  3.572824560717904*^9, 3.572824570562521*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"shiftString", "[", 
+   RowBox[{"text_", ",", " ", "shift_"}], "]"}], ":=", 
+  RowBox[{"StringJoin", "[", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"LetterQ", "[", "c", "]"}], ",", 
+       RowBox[{"shiftChar", "[", 
+        RowBox[{"c", ",", " ", "shift"}], "]"}], ",", "c"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"c", ",", 
+       RowBox[{"Characters", "[", "text", "]"}]}], "}"}]}], "]"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.5728213318510303`*^9, 3.5728213583554773`*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Caesar Shift", "Subsection",
+ CellChangeTimes->{{3.5728244427016964`*^9, 3.572824450985311*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["caesarShiftE[plainText, shift]", "Subsubsection",
+ CellChangeTimes->{{3.5728244685841417`*^9, 3.5728244796289616`*^9}}],
+
+Cell[TextData[{
+ "Encrypts ",
+ StyleBox["plainText", "Input"],
+ " using a Caesar Shift of ",
+ StyleBox["shift", "Input"],
+ ". Uses ",
+ StyleBox["shiftString", "Code"],
+ " and produces an uppercase string."
+}], "Text",
+ CellChangeTimes->{{3.5728245851485467`*^9, 3.5728246043989806`*^9}, {
+  3.5728247113527684`*^9, 3.5728247373268137`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"caesarShiftE", "[", 
+   RowBox[{"plainText_", ",", " ", "shift_"}], "]"}], ":=", 
+  RowBox[{"ToUpperCase", "[", 
+   RowBox[{"shiftString", "[", 
+    RowBox[{"plainText", ",", "shift"}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.5728213731755033`*^9, 3.572821415077177*^9}, {
+  3.5728218549521494`*^9, 3.5728218605375595`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+caesarShiftD[cipherText, shift]\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.5728244685841417`*^9, 3.5728244796289616`*^9}, {
+  3.5728246105297914`*^9, 3.5728246134313965`*^9}}],
+
+Cell[TextData[{
+ "Decrypts ",
+ StyleBox["cipherText", "Input"],
+ " using a Caesar Shift of ",
+ StyleBox["shift", "Input"],
+ " (this function automatically handles creating a negative shift). Uses ",
+ StyleBox["shiftString", "Code"],
+ " and produces a lowercase string."
+}], "Text",
+ CellChangeTimes->{{3.5728245851485467`*^9, 3.5728246607306795`*^9}, {
+  3.572824751476039*^9, 3.5728247590888524`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"caesarShiftD", "[", 
+   RowBox[{"cipherText_", ",", " ", "shift_"}], "]"}], ":=", 
+  RowBox[{"ToLowerCase", "[", 
+   RowBox[{"shiftString", "[", 
+    RowBox[{"cipherText", ",", 
+     RowBox[{"-", "shift"}]}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.572821437322816*^9, 3.5728214593344545`*^9}, {
+  3.572821840865325*^9, 3.572821849070939*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["SImple Substitution", "Subsection",
+ CellChangeTimes->{{3.5728247959391174`*^9, 3.5728248089963403`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+simpleSubE[plainText, cipherKey, ignoreCase, plainKey]\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.572824824190767*^9, 3.5728248365615883`*^9}}],
+
+Cell[TextData[{
+ "Encrypts ",
+ StyleBox["plainText", "Input"],
+ " using ",
+ StyleBox["cipherKey", "Input"],
+ ". Setting ",
+ StyleBox["ignoreCase", "Input"],
+ " to False will make the ",
+ StyleBox["cipherKey", "Input"],
+ " and ",
+ StyleBox["plainKey", "Input"],
+ " case sensitive.  The substitution rules are built in the form ",
+ StyleBox["plainKey ", "Code"],
+ "\[Rule]",
+ StyleBox[" cipherKey", "Code"],
+ ". ",
+ StyleBox["plainKey", "Input"],
+ " defaults to a lowercase a-z alphabet but can be changed if something else \
+is desired (although I don\[CloseCurlyQuote]t really have a scenario in mind \
+as of the initial writing)."
+}], "Text",
+ CellChangeTimes->{{3.572824847824808*^9, 3.5728249863530517`*^9}, {
+  3.5728250720440025`*^9, 3.5728250839156227`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"simpleSubE", "[", 
+   RowBox[{"plainText_", ",", "cipherKey_", ",", 
+    RowBox[{"ignoreCase_:", "True"}], ",", " ", 
+    RowBox[{"plainKey_:", "\"\<abcdefghijklmnopqrstuvwxyz\>\""}]}], "]"}], ":=", 
+  RowBox[{"StringReplace", "[", 
+   RowBox[{"plainText", ",", 
+    RowBox[{"Inner", "[", 
+     RowBox[{"Rule", ",", 
+      RowBox[{"Characters", "[", "plainKey", "]"}], ",", 
+      RowBox[{"Characters", "[", "cipherKey", "]"}], ",", "List"}], "]"}], 
+    ",", 
+    RowBox[{"IgnoreCase", "\[Rule]", "ignoreCase"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.572823418871297*^9, 3.5728234230365047`*^9}, {
+  3.5728235048118477`*^9, 3.572823525497484*^9}, {3.5728235668843575`*^9, 
+  3.5728236435584917`*^9}, {3.57282368811217*^9, 3.5728237293430424`*^9}, {
+  3.5728240461328*^9, 3.5728240509376082`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+simpleSubD[cipherText, cipherKey, ignoreCase, plainKey]\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.572824824190767*^9, 3.5728248365615883`*^9}, {
+  3.572824995089067*^9, 3.5728250077406893`*^9}}],
+
+Cell[TextData[{
+ "Reverses ",
+ StyleBox["simpleSubE", "Code"],
+ " on ",
+ StyleBox["cipherText", "Input"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.572824847824808*^9, 3.5728250145891013`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"simpleSubD", "[", 
+   RowBox[{"cipherText_", ",", "cipherKey_", ",", 
+    RowBox[{"ignoreCase_:", "True"}], ",", " ", 
+    RowBox[{"plainKey_:", "\"\<abcdefghijklmnopqrstuvwxyz\>\""}]}], "]"}], ":=", 
+  RowBox[{"StringReplace", "[", 
+   RowBox[{"cipherText", ",", 
+    RowBox[{"Inner", "[", 
+     RowBox[{"Rule", ",", 
+      RowBox[{"Characters", "[", "cipherKey", "]"}], ",", 
+      RowBox[{"Characters", "[", "plainKey", "]"}], ",", "List"}], "]"}], ",", 
+    RowBox[{"IgnoreCase", "\[Rule]", "ignoreCase"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.572823418871297*^9, 3.5728234230365047`*^9}, {
+  3.5728235048118477`*^9, 3.572823525497484*^9}, {3.5728235668843575`*^9, 
+  3.5728236435584917`*^9}, {3.57282368811217*^9, 3.5728237293430424`*^9}, {
+  3.5728240461328*^9, 3.5728240509376082`*^9}, {3.572824090265277*^9, 
+  3.5728241097029114`*^9}}]
+}, Open  ]]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
 WindowSize->{707, 505},
-WindowMargins->{{46, Automatic}, {Automatic, 31}},
+WindowMargins->{{46, Automatic}, {57, Automatic}},
 FrontEndVersion->"8.0 for Microsoft Windows (32-bit) (October 6, 2011)",
 StyleDefinitions->FrontEnd`FileName[{"Report"}, "StandardReport.nb", 
   CharacterEncoding -> "WindowsANSI"]
@@ -181,6 +426,48 @@ Cell[CellGroupData[{
 Cell[3209, 100, 119, 1, 24, "Subsection"],
 Cell[3331, 103, 208, 5, 29, "Text"],
 Cell[3542, 110, 1495, 37, 121, "Input"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5086, 153, 105, 1, 73, "Section"],
+Cell[CellGroupData[{
+Cell[5216, 158, 109, 1, 24, "Subsection"],
+Cell[CellGroupData[{
+Cell[5350, 163, 112, 1, 23, "Subsubsection"],
+Cell[5465, 166, 234, 7, 30, "Text"],
+Cell[5702, 175, 800, 20, 101, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6539, 200, 115, 1, 23, "Subsubsection"],
+Cell[6657, 203, 318, 10, 30, "Text"],
+Cell[6978, 215, 580, 16, 61, "Input"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7607, 237, 102, 1, 24, "Subsection"],
+Cell[CellGroupData[{
+Cell[7734, 242, 125, 1, 23, "Subsubsection"],
+Cell[7862, 245, 340, 10, 30, "Text"],
+Cell[8205, 257, 367, 8, 40, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8609, 270, 187, 4, 23, "Subsubsection"],
+Cell[8799, 276, 402, 10, 48, "Text"],
+Cell[9204, 288, 386, 9, 61, "Input"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9639, 303, 111, 1, 24, "Subsection"],
+Cell[CellGroupData[{
+Cell[9775, 308, 155, 3, 23, "Subsubsection"],
+Cell[9933, 313, 764, 22, 85, "Text"],
+Cell[10700, 337, 837, 17, 101, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11574, 359, 207, 4, 23, "Subsubsection"],
+Cell[11784, 365, 190, 7, 30, "Text"],
+Cell[11977, 374, 885, 17, 101, "Input"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
