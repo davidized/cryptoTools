@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     14915,        469]
-NotebookOptionsPosition[     12914,        397]
-NotebookOutlinePosition[     13334,        413]
-CellTagsIndexPosition[     13291,        410]
+NotebookDataLength[     25794,        800]
+NotebookOptionsPosition[     22836,        698]
+NotebookOutlinePosition[     23256,        714]
+CellTagsIndexPosition[     23213,        711]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -30,12 +30,17 @@ by David Williamson <david@davidized.com>\
 
 Cell[CellGroupData[{
 
-Cell["Frequency Analysis", "Section",
+Cell["Analysis", "Section",
+ CellChangeTimes->{{3.5728808263448796`*^9, 3.5728808273120813`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Frequency Analysis", "Subsection",
  CellChangeTimes->{{3.57240333222018*^9, 3.5724033438578005`*^9}}],
 
 Cell[CellGroupData[{
 
-Cell["freqAnalysis[cryptoText]", "Subsection",
+Cell["freqAnalysis[cryptoText]", "Subsubsection",
  CellChangeTimes->{{3.57240334908381*^9, 3.5724033548558197`*^9}}],
 
 Cell[TextData[{
@@ -98,7 +103,7 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
-Cell["freqAnalysisNum[cryptoText]", "Subsection",
+Cell["freqAnalysisNum[cryptoText]", "Subsubsection",
  CellChangeTimes->{{3.5724049070479465`*^9, 3.5724049134751577`*^9}}],
 
 Cell[TextData[{
@@ -151,87 +156,286 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
-Cell["Substition Ciphers", "Section",
- CellChangeTimes->{{3.5728242269371176`*^9, 3.572824235017932*^9}}],
+Cell["Index of Coincidence", "Subsection",
+ CellChangeTimes->{{3.572880973173338*^9, 3.572880975731742*^9}}],
 
 Cell[CellGroupData[{
 
-Cell["Utility Functions", "Subsection",
- CellChangeTimes->{{3.5728242447211485`*^9, 3.5728242467647524`*^9}}],
-
-Cell[CellGroupData[{
-
-Cell["shiftChar[c, shift]", "Subsubsection",
- CellChangeTimes->{{3.5728243356235085`*^9, 3.572824364389959*^9}}],
+Cell["kappaIC", "Subsubsection",
+ CellChangeTimes->{{3.572881124104603*^9, 3.5728811795471*^9}, {
+  3.5728812803710775`*^9, 3.5728812846922846`*^9}}],
 
 Cell[TextData[{
- "Shifts given character ",
+ StyleBox["kappaIC[text, shift, c]", "Code"],
+ " looks at actual coincidences when shifting a given ",
+ StyleBox["text", "Input"],
+ " against itself. The ",
+ StyleBox["kappICTable[text, maxShifts, c]", "Code"],
+ " produces the output in TableForm and ",
+ StyleBox["kappaICPlot[text, maxShifts, c]", "Code"],
+ " produces a bar graph. ",
  StyleBox["c", "Input"],
- " according to ",
- StyleBox["shift", "Input"],
- " (may be positive or negative). "
+ " represents the number of characters in the alphabet which the text is made \
+up of."
 }], "Text",
- CellChangeTimes->{{3.5728243722367725`*^9, 3.5728243944044113`*^9}}],
+ CellChangeTimes->{{3.572881576882798*^9, 3.572881615882867*^9}, {
+  3.5728816507645283`*^9, 3.572881742055888*^9}}],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"shiftChar", "[", 
-   RowBox[{"c_", ",", " ", "shift_"}], "]"}], " ", ":=", 
-  RowBox[{"FromCharacterCode", "[", 
-   RowBox[{
-    RowBox[{"Mod", "[", 
-     RowBox[{
-      RowBox[{
-       RowBox[{"ToCharacterCode", "[", "c", "]"}], "-", 
-       RowBox[{"If", "[", 
+  RowBox[{"kappaIC", "[", 
+   RowBox[{"text_", ",", "shift_", ",", 
+    RowBox[{"c_:", "26"}]}], "]"}], ":=", " ", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"textL", "=", 
+       RowBox[{"Select", "[", 
         RowBox[{
-         RowBox[{"UpperCaseQ", "[", "c", "]"}], ",", "65", ",", "97"}], "]"}],
-        "+", "shift"}], ",", "26"}], "]"}], "+", 
-    RowBox[{"If", "[", 
+         RowBox[{"Characters", "[", 
+          RowBox[{"ToUpperCase", "[", "text", "]"}], "]"}], ",", "LetterQ"}], 
+        "]"}]}], "}"}], ",", 
+     RowBox[{"Divide", "[", 
+      RowBox[{
+       RowBox[{"Sum", "[", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"textL", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "\[Equal]", 
+            RowBox[{
+             RowBox[{"RotateRight", "[", 
+              RowBox[{"textL", ",", "shift"}], "]"}], "[", 
+             RowBox[{"[", "i", "]"}], "]"}]}], ",", " ", "1", ",", " ", "0"}],
+           "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", 
+           RowBox[{"Length", "[", "textL", "]"}]}], "}"}]}], "]"}], ",", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Length", "[", "textL", "]"}], "/", "c"}], ")"}]}], "]"}]}], 
+    "]"}], " ", "//", "N"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"kappaICTable", "[", 
+   RowBox[{"text_", ",", " ", "maxShifts_", ",", " ", 
+    RowBox[{"c_:", " ", "26"}]}], "]"}], " ", ":=", " ", 
+  RowBox[{
+   RowBox[{"ParallelTable", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"shift", ",", " ", 
+       RowBox[{"kappaIC", "[", 
+        RowBox[{"text", ",", " ", "shift", ",", " ", "c"}], "]"}]}], "}"}], 
+     ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"shift", ",", " ", "1", ",", " ", "maxShifts"}], "}"}]}], "]"}],
+    " ", "//", " ", "TableForm"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"kappaICPlot", "[", 
+   RowBox[{"text_", ",", "maxShifts_", ",", 
+    RowBox[{"c_:", "26"}]}], "]"}], ":=", 
+  RowBox[{"BarChart", "[", 
+   RowBox[{
+    RowBox[{"ParallelTable", "[", 
      RowBox[{
-      RowBox[{"UpperCaseQ", "[", "c", "]"}], ",", "65", ",", "97"}], "]"}]}], 
-   "]"}]}]], "Input",
- CellChangeTimes->{{3.572818263489239*^9, 3.5728183186695366`*^9}, {
-  3.572818390649063*^9, 3.5728183993850784`*^9}, {3.5728185508321447`*^9, 
-  3.5728186544787264`*^9}, {3.572819029959786*^9, 3.572819080441475*^9}}]
+      RowBox[{"kappaIC", "[", 
+       RowBox[{"text", ",", "shift", ",", "c"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"shift", ",", "1", ",", "maxShifts"}], "}"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"ChartLabels", "\[Rule]", 
+       RowBox[{"Placed", "[", 
+        RowBox[{
+         RowBox[{"Range", "[", 
+          RowBox[{"1", ",", "maxShifts"}], "]"}], ",", "Below"}], "]"}]}], 
+      ",", 
+      RowBox[{"AxesLabel", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Shift\>\"", ",", "\"\<kappaIC\>\""}], "}"}]}]}], "}"}]}],
+    "]"}]}]], "Input"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["shiftString[text, shift]", "Subsubsection",
- CellChangeTimes->{{3.572824489066978*^9, 3.572824494152587*^9}}],
+Cell["deltaIC", "Subsubsection",
+ CellChangeTimes->{{3.5728812967823057`*^9, 3.5728812977183075`*^9}}],
 
 Cell[TextData[{
- "Shifts a string (",
- StyleBox["text", "Input"],
- ") according to ",
- StyleBox["shift", "Input"],
- " (postitive or negative) using ",
- StyleBox["shiftChar", "Code"],
- "."
+ StyleBox["deltaIC[text, c]", "Code"],
+ " uses letter frequencies to calculate an Index of Coincidence value. "
 }], "Text",
- CellChangeTimes->{{3.5728245018434005`*^9, 3.5728245222170362`*^9}, {
-  3.572824560717904*^9, 3.572824570562521*^9}}],
+ CellChangeTimes->{{3.5728817960943832`*^9, 3.5728818241744328`*^9}}],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"shiftString", "[", 
-   RowBox[{"text_", ",", " ", "shift_"}], "]"}], ":=", 
-  RowBox[{"StringJoin", "[", 
-   RowBox[{"Table", "[", 
+  RowBox[{"deltaIC", "[", 
+   RowBox[{"text_", ",", 
+    RowBox[{"c_:", "26"}], ",", 
+    RowBox[{"letters_:", 
+     RowBox[{"CharacterRange", "[", 
+      RowBox[{"\"\<a\>\"", ",", "\"\<z\>\""}], "]"}]}]}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Module", "[", 
     RowBox[{
-     RowBox[{"If", "[", 
-      RowBox[{
-       RowBox[{"LetterQ", "[", "c", "]"}], ",", 
-       RowBox[{"shiftChar", "[", 
-        RowBox[{"c", ",", " ", "shift"}], "]"}], ",", "c"}], "]"}], ",", 
      RowBox[{"{", 
-      RowBox[{"c", ",", 
-       RowBox[{"Characters", "[", "text", "]"}]}], "}"}]}], "]"}], 
-   "]"}]}]], "Input",
- CellChangeTimes->{{3.5728213318510303`*^9, 3.5728213583554773`*^9}}]
+      RowBox[{"textL", "=", 
+       RowBox[{"Select", "[", 
+        RowBox[{
+         RowBox[{"Characters", "[", 
+          RowBox[{"ToLowerCase", "[", "text", "]"}], "]"}], ",", "LetterQ"}], 
+        "]"}]}], "}"}], ",", 
+     RowBox[{"Divide", "[", 
+      RowBox[{
+       RowBox[{"Sum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Count", "[", 
+           RowBox[{"textL", ",", 
+            RowBox[{"numToLetter", "[", 
+             RowBox[{"l", ",", "letters"}], "]"}]}], "]"}], "*", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Count", "[", 
+             RowBox[{"textL", ",", 
+              RowBox[{"numToLetter", "[", 
+               RowBox[{"l", ",", "letters"}], "]"}]}], "]"}], "-", "1"}], 
+           ")"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"l", ",", "1", ",", "c"}], "}"}]}], "]"}], ",", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"Length", "[", "textL", "]"}], "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Length", "[", "textL", "]"}], "-", "1"}], ")"}]}], 
+          ")"}], "/", "c"}], ")"}]}], "]"}]}], "]"}], " ", "//", 
+   "N"}]}]], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["deltaBarIC", "Subsubsection",
+ CellChangeTimes->{{3.5728813037867184`*^9, 3.5728813062827225`*^9}}],
+
+Cell[TextData[{
+ StyleBox["deltaBarIC[text, keyLength, c, letters] ", "Code"],
+ "uses ",
+ StyleBox["keyLength", "Input"],
+ " to split the text and then calculates the average ",
+ StyleBox["deltaIC", "Code"],
+ " for each character of the key. This is useful when attempting to determine \
+key length as we should see significantly higher values for lengths which are \
+multiples of the acutal key length.\nThe ",
+ StyleBox["deltaBarICTable[text, maxKeyLength, c, letters]", "Code"],
+ " and ",
+ StyleBox["deltaBarICPlot[text, maxKeyLength, c, letters]", "Code"],
+ " produce tables and bar graphs, respectively, of ",
+ StyleBox["deltaBarIC", "Code"],
+ " values."
+}], "Text",
+ CellChangeTimes->{{3.572881882830536*^9, 3.572882014654767*^9}, {
+  3.572882053670436*^9, 3.5728821032357235`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"deltaBarIC", "[", 
+   RowBox[{"text_", ",", "keyLength_", ",", 
+    RowBox[{"c_:", "26"}], ",", 
+    RowBox[{"letters_:", 
+     RowBox[{"CharacterRange", "[", 
+      RowBox[{"\"\<a\>\"", ",", "\"\<z\>\""}], "]"}]}]}], "]"}], ":=", " ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"textM", "=", 
+      RowBox[{"Partition", "[", 
+       RowBox[{
+        RowBox[{"Select", "[", 
+         RowBox[{
+          RowBox[{"Characters", "[", 
+           RowBox[{"ToLowerCase", "[", "text", "]"}], "]"}], ",", "LetterQ"}],
+          "]"}], ",", "keyLength"}], "]"}]}], "}"}], ",", 
+    RowBox[{"Mean", "[", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"deltaIC", "[", 
+        RowBox[{
+         RowBox[{"StringJoin", "[", 
+          RowBox[{"textM", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "k"}], "]"}], "]"}], "]"}], ",", "c", ",", 
+         "letters"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"k", ",", "1", ",", "keyLength"}], "}"}]}], "]"}], "]"}]}], 
+   "]"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"deltaBarICTable", "[", 
+   RowBox[{"text_", ",", "maxKeyLength_", ",", 
+    RowBox[{"c_:", "26"}], ",", 
+    RowBox[{"letters_:", 
+     RowBox[{"CharacterRange", "[", 
+      RowBox[{"\"\<a\>\"", ",", "\"\<z\>\""}], "]"}]}]}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"ParallelTable", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"keyLength", ",", 
+       RowBox[{"deltaBarIC", "[", 
+        RowBox[{"text", ",", "keyLength", ",", "c", ",", "letters"}], "]"}]}],
+       "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"keyLength", ",", "1", ",", "maxKeyLength"}], "}"}]}], "]"}], 
+   " ", "//", "TableForm"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"deltaBarICPlot", "[", 
+   RowBox[{"text_", ",", "maxKeyLength_", ",", 
+    RowBox[{"c_:", "26"}], ",", 
+    RowBox[{"letters_:", 
+     RowBox[{"CharacterRange", "[", 
+      RowBox[{"\"\<a\>\"", ",", "\"\<z\>\""}], "]"}]}]}], "]"}], ":=", 
+  RowBox[{"BarChart", "[", 
+   RowBox[{
+    RowBox[{"ParallelTable", "[", 
+     RowBox[{
+      RowBox[{"deltaBarIC", "[", 
+       RowBox[{"text", ",", "keyLength", ",", "c", ",", "letters"}], "]"}], 
+      ",", 
+      RowBox[{"{", 
+       RowBox[{"keyLength", ",", " ", "1", ",", "maxKeyLength"}], "}"}]}], 
+     "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"ChartLabels", "\[Rule]", 
+       RowBox[{"Placed", "[", 
+        RowBox[{
+         RowBox[{"Range", "[", 
+          RowBox[{"1", ",", "maxKeyLength"}], "]"}], ",", "Below"}], "]"}]}], 
+      ",", 
+      RowBox[{"AxesLabel", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Key Length\>\"", ",", "\"\<deltaBarIC\>\""}], "}"}]}]}], 
+     "}"}]}], "]"}]}]], "Input"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Cipher Systems", "Section",
+ CellChangeTimes->{{3.5728808378732996`*^9, 3.572880856718133*^9}}],
 
 Cell[CellGroupData[{
 
@@ -268,9 +472,7 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
-Cell["\<\
-caesarShiftD[cipherText, shift]\
-\>", "Subsubsection",
+Cell["caesarShiftD[cipherText, shift]", "Subsubsection",
  CellChangeTimes->{{3.5728244685841417`*^9, 3.5728244796289616`*^9}, {
   3.5728246105297914`*^9, 3.5728246134313965`*^9}}],
 
@@ -306,9 +508,7 @@ Cell["SImple Substitution", "Subsection",
 
 Cell[CellGroupData[{
 
-Cell["\<\
-simpleSubE[plainText, cipherKey, ignoreCase, plainKey]\
-\>", "Subsubsection",
+Cell["simpleSubE[plainText, cipherKey, ignoreCase, plainKey]", "Subsubsection",
  CellChangeTimes->{{3.572824824190767*^9, 3.5728248365615883`*^9}}],
 
 Cell[TextData[{
@@ -357,9 +557,8 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
-Cell["\<\
-simpleSubD[cipherText, cipherKey, ignoreCase, plainKey]\
-\>", "Subsubsection",
+Cell["simpleSubD[cipherText, cipherKey, ignoreCase, plainKey]", \
+"Subsubsection",
  CellChangeTimes->{{3.572824824190767*^9, 3.5728248365615883`*^9}, {
   3.572824995089067*^9, 3.5728250077406893`*^9}}],
 
@@ -392,6 +591,108 @@ Cell[BoxData[
   3.5728241097029114`*^9}}]
 }, Open  ]]
 }, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Utility Functions", "Section",
+ CellChangeTimes->{{3.572880863566545*^9, 3.572880865875349*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["numToLetter[num, letters]", "Subsection",
+ CellChangeTimes->{{3.5728813540822067`*^9, 3.5728813595422163`*^9}}],
+
+Cell["\<\
+Converts a given number (num) to letters based on the list found in letters. \
+This function makes it easier to generate tables when it\[CloseCurlyQuote]s \
+necessary to list through all the letters in the alphabet.\
+\>", "Text",
+ CellChangeTimes->{{3.5728814915194483`*^9, 3.572881564433976*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"numToLetter", "[", 
+   RowBox[{"num_", ",", 
+    RowBox[{"letters_:", 
+     RowBox[{"CharacterRange", "[", 
+      RowBox[{"\"\<a\>\"", ",", "\"\<z\>\""}], "]"}]}]}], "]"}], ":=", 
+  RowBox[{"letters", "[", 
+   RowBox[{"[", "num", "]"}], "]"}]}]], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["shiftChar[c, shift]", "Subsection",
+ CellChangeTimes->{{3.5728243356235085`*^9, 3.572824364389959*^9}}],
+
+Cell[TextData[{
+ "Shifts given character ",
+ StyleBox["c", "Input"],
+ " according to ",
+ StyleBox["shift", "Input"],
+ " (may be positive or negative). "
+}], "Text",
+ CellChangeTimes->{{3.5728243722367725`*^9, 3.5728243944044113`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"shiftChar", "[", 
+   RowBox[{"c_", ",", " ", "shift_"}], "]"}], " ", ":=", 
+  RowBox[{"FromCharacterCode", "[", 
+   RowBox[{
+    RowBox[{"Mod", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ToCharacterCode", "[", "c", "]"}], "-", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"UpperCaseQ", "[", "c", "]"}], ",", "65", ",", "97"}], "]"}],
+        "+", "shift"}], ",", "26"}], "]"}], "+", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"UpperCaseQ", "[", "c", "]"}], ",", "65", ",", "97"}], "]"}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.572818263489239*^9, 3.5728183186695366`*^9}, {
+  3.572818390649063*^9, 3.5728183993850784`*^9}, {3.5728185508321447`*^9, 
+  3.5728186544787264`*^9}, {3.572819029959786*^9, 3.572819080441475*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["shiftString[text, shift]", "Subsection",
+ CellChangeTimes->{{3.572824489066978*^9, 3.572824494152587*^9}}],
+
+Cell[TextData[{
+ "Shifts a string (",
+ StyleBox["text", "Input"],
+ ") according to ",
+ StyleBox["shift", "Input"],
+ " (postitive or negative) using ",
+ StyleBox["shiftChar", "Code"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.5728245018434005`*^9, 3.5728245222170362`*^9}, {
+  3.572824560717904*^9, 3.572824570562521*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"shiftString", "[", 
+   RowBox[{"text_", ",", " ", "shift_"}], "]"}], ":=", 
+  RowBox[{"StringJoin", "[", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"LetterQ", "[", "c", "]"}], ",", 
+       RowBox[{"shiftChar", "[", 
+        RowBox[{"c", ",", " ", "shift"}], "]"}], ",", "c"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"c", ",", 
+       RowBox[{"Characters", "[", "text", "]"}]}], "}"}]}], "]"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.5728213318510303`*^9, 3.5728213583554773`*^9}}]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
@@ -416,58 +717,88 @@ Cell[CellGroupData[{
 Cell[579, 22, 94, 1, 81, "Title"],
 Cell[676, 25, 137, 3, 41, "Author"],
 Cell[CellGroupData[{
-Cell[838, 32, 104, 1, 73, "Section"],
+Cell[838, 32, 97, 1, 73, "Section"],
 Cell[CellGroupData[{
-Cell[967, 37, 113, 1, 24, "Subsection"],
-Cell[1083, 40, 664, 17, 65, "Text"],
-Cell[1750, 59, 1422, 36, 121, "Input"]
+Cell[960, 37, 107, 1, 24, "Subsection"],
+Cell[CellGroupData[{
+Cell[1092, 42, 116, 1, 23, "Subsubsection"],
+Cell[1211, 45, 664, 17, 65, "Text"],
+Cell[1878, 64, 1422, 36, 121, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3209, 100, 119, 1, 24, "Subsection"],
-Cell[3331, 103, 208, 5, 29, "Text"],
-Cell[3542, 110, 1495, 37, 121, "Input"]
+Cell[3337, 105, 122, 1, 23, "Subsubsection"],
+Cell[3462, 108, 208, 5, 29, "Text"],
+Cell[3673, 115, 1495, 37, 121, "Input"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[5086, 153, 105, 1, 73, "Section"],
+Cell[5217, 158, 108, 1, 24, "Subsection"],
 Cell[CellGroupData[{
-Cell[5216, 158, 109, 1, 24, "Subsection"],
-Cell[CellGroupData[{
-Cell[5350, 163, 112, 1, 23, "Subsubsection"],
-Cell[5465, 166, 234, 7, 30, "Text"],
-Cell[5702, 175, 800, 20, 101, "Input"]
+Cell[5350, 163, 149, 2, 23, "Subsubsection"],
+Cell[5502, 167, 593, 14, 67, "Text"],
+Cell[6098, 183, 1202, 35, 101, "Input"],
+Cell[7303, 220, 549, 15, 81, "Input"],
+Cell[7855, 237, 823, 24, 101, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6539, 200, 115, 1, 23, "Subsubsection"],
-Cell[6657, 203, 318, 10, 30, "Text"],
-Cell[6978, 215, 580, 16, 61, "Input"]
+Cell[8715, 266, 102, 1, 23, "Subsubsection"],
+Cell[8820, 269, 209, 4, 29, "Text"],
+Cell[9032, 275, 1511, 45, 121, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10580, 325, 105, 1, 23, "Subsubsection"],
+Cell[10688, 328, 788, 17, 102, "Text"],
+Cell[11479, 347, 1074, 31, 121, "Input"],
+Cell[12556, 380, 655, 18, 101, "Input"],
+Cell[13214, 400, 1015, 29, 141, "Input"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7607, 237, 102, 1, 24, "Subsection"],
+Cell[14290, 436, 101, 1, 73, "Section"],
 Cell[CellGroupData[{
-Cell[7734, 242, 125, 1, 23, "Subsubsection"],
-Cell[7862, 245, 340, 10, 30, "Text"],
-Cell[8205, 257, 367, 8, 40, "Input"]
+Cell[14416, 441, 102, 1, 24, "Subsection"],
+Cell[CellGroupData[{
+Cell[14543, 446, 125, 1, 23, "Subsubsection"],
+Cell[14671, 449, 340, 10, 30, "Text"],
+Cell[15014, 461, 367, 8, 40, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8609, 270, 187, 4, 23, "Subsubsection"],
-Cell[8799, 276, 402, 10, 48, "Text"],
-Cell[9204, 288, 386, 9, 61, "Input"]
+Cell[15418, 474, 179, 2, 23, "Subsubsection"],
+Cell[15600, 478, 402, 10, 48, "Text"],
+Cell[16005, 490, 386, 9, 61, "Input"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[9639, 303, 111, 1, 24, "Subsection"],
+Cell[16440, 505, 111, 1, 24, "Subsection"],
 Cell[CellGroupData[{
-Cell[9775, 308, 155, 3, 23, "Subsubsection"],
-Cell[9933, 313, 764, 22, 85, "Text"],
-Cell[10700, 337, 837, 17, 101, "Input"]
+Cell[16576, 510, 147, 1, 23, "Subsubsection"],
+Cell[16726, 513, 764, 22, 85, "Text"],
+Cell[17493, 537, 837, 17, 101, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[11574, 359, 207, 4, 23, "Subsubsection"],
-Cell[11784, 365, 190, 7, 30, "Text"],
-Cell[11977, 374, 885, 17, 101, "Input"]
+Cell[18367, 559, 201, 3, 23, "Subsubsection"],
+Cell[18571, 564, 190, 7, 30, "Text"],
+Cell[18764, 573, 885, 17, 121, "Input"]
 }, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19710, 597, 102, 1, 73, "Section"],
+Cell[CellGroupData[{
+Cell[19837, 602, 117, 1, 24, "Subsection"],
+Cell[19957, 605, 307, 5, 47, "Text"],
+Cell[20267, 612, 290, 8, 40, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20594, 625, 109, 1, 24, "Subsection"],
+Cell[20706, 628, 234, 7, 30, "Text"],
+Cell[20943, 637, 800, 20, 81, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21780, 662, 112, 1, 24, "Subsection"],
+Cell[21895, 665, 318, 10, 30, "Text"],
+Cell[22216, 677, 580, 16, 61, "Input"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
