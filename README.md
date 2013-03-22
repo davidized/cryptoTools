@@ -3,7 +3,9 @@ Tools I sometimes use while solving cons from _The Cryptogram_ (and other source
 
 ## Files
 - cryptoTools.nb - Mathematica notebook containing copies of the various functions developed along with notes about their use.
+- cryptoTools.m - Contains everything in cryptoTools.nb as a loadable Mathematica package.
 - *Work.nb - Mathematica notebooks containing scratch work, notes, and various iterations of cryptoTools functions. Maintained primarily for my own reference later when developing other functions.
+- usefulApplications.nb - Mathematica notebook with examples of useful ways of using functions in cryptoTools.nb
 
 ## Roadmap
 I pretty much am winging this, I'll add tools as I see uses for them in the future but for now here's a couple things I have in mind:
@@ -12,6 +14,7 @@ I pretty much am winging this, I'll add tools as I see uses for them in the futu
 - [ ] Vigenere Cipher
 -  Write some (or all) of the functions in Python
 - Implementation of Encryption/Decryption functions for various ACA Cipher Types.
+- Write Mathematica documentation for cryptoTools.m
 
 ## Coding Standards
 - Functions should be named using the Mathematica standard where the first letter is lowercase so as not to conflict with existing functions.
