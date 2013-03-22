@@ -1,0 +1,153 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      4894,        143]
+NotebookOptionsPosition[      4439,        121]
+NotebookOutlinePosition[      4782,        136]
+CellTagsIndexPosition[      4739,        133]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+cryptoTools Useful Applications\
+\>", "Title",
+ CellChangeTimes->{{3.5728877391284394`*^9, 3.572887755851669*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Shift Cipher Table of All Possible Shifts\
+\>", "Section",
+ CellChangeTimes->{{3.572887771451696*^9, 3.57288779104533*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"shift", ",", 
+      RowBox[{"caesarShiftD", "[", 
+       RowBox[{"\"\<UIFTF BSF UJNFT UIBU NBLF VT UJSFE\>\"", ",", "shift"}], 
+       "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"shift", ",", "0", ",", "25"}], "}"}]}], "]"}], " ", "//", 
+  RowBox[{
+   RowBox[{"TableForm", "[", 
+    RowBox[{"#", ",", 
+     RowBox[{"TableHeadings", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"None", ",", 
+        RowBox[{"{", 
+         RowBox[{"\"\<Shift\>\"", ",", "\"\<Shifted text\>\""}], "}"}]}], 
+       "}"}]}]}], "]"}], "&"}]}]], "Input",
+ CellChangeTimes->{{3.572887803197752*^9, 3.572887811886967*^9}, {
+  3.5728879107287407`*^9, 3.5728879228811617`*^9}, {3.572888197694245*^9, 
+  3.5728882874412026`*^9}, {3.572888329249276*^9, 3.5728883391396933`*^9}, {
+  3.572889152360124*^9, 3.5728891657605476`*^9}, {3.5728892246662507`*^9, 
+  3.5728892265070543`*^9}, {3.5728893098736005`*^9, 3.5728893355512457`*^9}, {
+  3.572889395970152*^9, 3.572889422568198*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      TagBox["\<\"Shift\"\>",
+       HoldForm], 
+      TagBox["\<\"Shifted text\"\>",
+       HoldForm]},
+     {"0", "\<\"uiftf bsf ujnft uibu nblf vt ujsfe\"\>"},
+     {"1", "\<\"these are times that make us tired\"\>"},
+     {"2", "\<\"sgdrd zqd shldr sgzs lzjd tr shqdc\"\>"},
+     {"3", "\<\"rfcqc ypc rgkcq rfyr kyic sq rgpcb\"\>"},
+     {"4", "\<\"qebpb xob qfjbp qexq jxhb rp qfoba\"\>"},
+     {"5", "\<\"pdaoa wna peiao pdwp iwga qo penaz\"\>"},
+     {"6", "\<\"ocznz vmz odhzn ocvo hvfz pn odmzy\"\>"},
+     {"7", "\<\"nbymy uly ncgym nbun guey om nclyx\"\>"},
+     {"8", "\<\"maxlx tkx mbfxl matm ftdx nl mbkxw\"\>"},
+     {"9", "\<\"lzwkw sjw laewk lzsl escw mk lajwv\"\>"},
+     {"10", "\<\"kyvjv riv kzdvj kyrk drbv lj kzivu\"\>"},
+     {"11", "\<\"jxuiu qhu jycui jxqj cqau ki jyhut\"\>"},
+     {"12", "\<\"iwtht pgt ixbth iwpi bpzt jh ixgts\"\>"},
+     {"13", "\<\"hvsgs ofs hwasg hvoh aoys ig hwfsr\"\>"},
+     {"14", "\<\"gurfr ner gvzrf gung znxr hf gverq\"\>"},
+     {"15", "\<\"ftqeq mdq fuyqe ftmf ymwq ge fudqp\"\>"},
+     {"16", "\<\"espdp lcp etxpd esle xlvp fd etcpo\"\>"},
+     {"17", "\<\"droco kbo dswoc drkd wkuo ec dsbon\"\>"},
+     {"18", "\<\"cqnbn jan crvnb cqjc vjtn db cranm\"\>"},
+     {"19", "\<\"bpmam izm bquma bpib uism ca bqzml\"\>"},
+     {"20", "\<\"aolzl hyl aptlz aoha thrl bz apylk\"\>"},
+     {"21", "\<\"znkyk gxk zosky zngz sgqk ay zoxkj\"\>"},
+     {"22", "\<\"ymjxj fwj ynrjx ymfy rfpj zx ynwji\"\>"},
+     {"23", "\<\"xliwi evi xmqiw xlex qeoi yw xmvih\"\>"},
+     {"24", "\<\"wkhvh duh wlphv wkdw pdnh xv wluhg\"\>"},
+     {"25", "\<\"vjgug ctg vkogu vjcv ocmg wu vktgf\"\>"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxDividers->{
+     "Columns" -> {{False}}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   {None, OutputFormsDump`HeadedColumns}],
+  Function[BoxForm`e$, 
+   TableForm[
+   BoxForm`e$, 
+    TableHeadings -> {None, {"Shift", "Shifted text"}}]]]], "Output",
+ CellChangeTimes->{3.5728894236446004`*^9}]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+},
+WindowSize->{707, 637},
+WindowMargins->{{94, Automatic}, {Automatic, 57}},
+FrontEndVersion->"8.0 for Microsoft Windows (32-bit) (October 6, 2011)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 124, 3, 83, "Title"],
+Cell[CellGroupData[{
+Cell[728, 29, 133, 3, 71, "Section"],
+Cell[CellGroupData[{
+Cell[886, 36, 1057, 25, 72, "Input"],
+Cell[1946, 63, 2453, 53, 432, "Output"]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
